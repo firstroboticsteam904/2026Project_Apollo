@@ -9,34 +9,22 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import java.io.File;
-import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
-
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import swervelib.parser.SwerveParser;
 import swervelib.telemetry.SwerveDriveTelemetry;
 import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 import swervelib.SwerveDrive;
-import swervelib.SwerveInputStream;
-import edu.wpi.first.apriltag.AprilTagFieldLayout;
-import edu.wpi.first.apriltag.AprilTagFields;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.Odometry;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 import static edu.wpi.first.units.Units.Meter;
 
@@ -46,14 +34,6 @@ public class SwerveSubsystem extends SubsystemBase {
 
   File directory = new File(Filesystem.getDeployDirectory(),"swerve");
   SwerveDrive  swerveDrive;
-
-  //private final AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025Reefscape);
-
-  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ty = table.getEntry("ty");
-    NetworkTableEntry ta = table.getEntry("ta");
-
 
   public SwerveSubsystem() {
     // IMPORTANT - when at competition, comment out next line, or set to low
@@ -94,27 +74,6 @@ public class SwerveSubsystem extends SubsystemBase {
       swerveDrive.driveFieldOriented(velocity.get());
     });
   }
-
-
-    public DoubleSupplier PIDlimelightRotation(){
-    PIDController limelightRotationPID = new PIDController(0.025, 0.00009, 0.00007);
-    return () -> {
-      double txDouble = tx.getDouble(0);
-      double rotationPower = limelightRotationPID.calculate(txDouble, 0);
-      return rotationPower * -1;
-    };
-  }
-
-  public DoubleSupplier PIDlimslightdrive(){
-    PIDController limelightdrivePidController = new PIDController(0.025, 0.00009, 0.00007);
-    return () -> {
-      double tyDouble = ty.getDouble(0);
-     double drivepower = limelightdrivePidController.calculate(tyDouble, -5);
-     return drivepower * -1;  
-    };
-  }
-
-
 
     public void setupPathPlanner()
   
