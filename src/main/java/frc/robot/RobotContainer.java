@@ -38,8 +38,8 @@ public class RobotContainer {
   }
 
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(driveBase.getSwerveDrive(), 
-                                            () -> driverController.getLeftY() * -1,
-                                            () -> driverController.getLeftX() * -1)
+                                            () -> driverController.getLeftY() *-1,
+                                            () -> driverController.getLeftX() *-1)
                                             .withControllerRotationAxis(driverController::getRightX)
                                             .deadband(OperatorConstants.Deadzone)
                                             .scaleTranslation(1)
@@ -47,7 +47,7 @@ public class RobotContainer {
 
   SwerveInputStream limelightDrive = SwerveInputStream.of(driveBase.getSwerveDrive(),
                                             driveBase.PIDlimslightdrive(),
-                                            () -> driverController.getLeftX() * -1)
+                                            () -> driverController.getLeftX())
                                             .withControllerRotationAxis(driveBase.PIDlimelightRotation())
                                             .deadband(OperatorConstants.limelightDeadzone)
                                             .scaleTranslation(0.85)
