@@ -9,8 +9,6 @@ import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -23,9 +21,6 @@ public class RobotContainer {
   private final SwerveSubsystem driveBase = new SwerveSubsystem();
 
   private final CommandXboxController driverController = new CommandXboxController(0);
-  private final CommandXboxController operaterController = new CommandXboxController(1);
-
-  //test
 
   public RobotContainer() {
     DriverStation.silenceJoystickConnectionWarning(true);
@@ -45,19 +40,7 @@ public class RobotContainer {
                                             .scaleTranslation(1)
                                             .allianceRelativeControl(true);
 
-
-   /*SwerveInputStream driveDirectAngle = driveAngularVelocity.copy().withControllerHeadingAxis(
-                                          driverController::getRightX, 
-                                          driverController::getRightY)
-                                         .headingWhile(true);*/
-
-  SwerveInputStream driveRobotOriented = driveAngularVelocity.copy()
-                                        .allianceRelativeControl(false)
-                                        .robotRelative(true);
-
-    //Command driveFieldOrientatedDirectAngle = driveBase.driveFieldOriented(driveDirectAngle);
     Command driveFieldOrientatedAngularVelocity = driveBase.driveFieldOriented(driveAngularVelocity);
-    Command driverobotOrientedCmd = driveBase.driveFieldOriented(driveRobotOriented);
 
   private void configureBindings() {
     driverController.x()
