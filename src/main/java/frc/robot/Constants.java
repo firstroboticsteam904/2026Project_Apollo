@@ -4,10 +4,16 @@
 
 package frc.robot;
 
+import com.revrobotics.spark.config.SparkMaxConfig;
+
 import edu.wpi.first.math.util.Units;
 
 /** Add your docs here. */
 public final class Constants {
+
+  public static final SparkMaxConfig kTwntyAmp = new SparkMaxConfig();
+  public static final SparkMaxConfig kFortyAmp = new SparkMaxConfig();
+  
     public static final class OperatorConstants{
 
         public static final double Deadzone = 0.15;
@@ -15,4 +21,11 @@ public final class Constants {
       }
 
     public static final double maximumSpeed = Units.feetToMeters(13.59);
+
+    static{
+      kFortyAmp.smartCurrentLimit(45);
+      kTwntyAmp.smartCurrentLimit(25);
+    
+    }
 }
+
