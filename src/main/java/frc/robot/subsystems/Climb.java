@@ -7,6 +7,13 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climb extends SubsystemBase {
+  /*
+   * This should contain the code for the climbing system.
+   * 
+   * Ablity to raise the climber
+   * 
+   * Ability to lower the climber
+   */
   /** Creates a new Climb. */
   public Climb() {}
 
