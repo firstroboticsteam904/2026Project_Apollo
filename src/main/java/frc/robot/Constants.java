@@ -34,6 +34,26 @@ public final class Constants {
     public static final MotorType NEO550 = MotorType.kBrushless;
     }
 
+    public static final class LimelightConstants{
+      //Red Hub Apriltag ID's (will need to be changed later)
+      public static final int kRedHubFTMid = 1;
+      public static final int kRedHubRTMid = 2;
+      public static final int kRedHubLTMid = 3;
+      //Blue Hub Apriltag ID's (will need to be changed later)
+      public static final int kBlueHubFTMid = 4;
+      public static final int kBlueHubRTMid = 5;
+      public static final int kBlueHubLTMid = 6;
+    }
+
+    public static final class TurretConstants{
+      public static final double kHoodHome = 0;
+      public static final double kHoodMax = 100; //number will need to be adjusted later
+      public static final double kHoodPass = 50; //number will need to be adjusted later
+      public static final double kTurRotHome = 0;
+      public static final double kTurLTMax = 100; //number will need to be changed later
+      public static final double kTurRTMax = -100; //number will need to be changed later
+    }
+
     static{
       //Forty Amp Limit
       kFortyAmp.smartCurrentLimit(45);
