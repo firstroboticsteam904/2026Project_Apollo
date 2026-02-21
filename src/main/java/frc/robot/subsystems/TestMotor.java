@@ -7,13 +7,14 @@ package frc.robot.subsystems;
 import com.revrobotics.PersistMode;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.ResetMode;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class TestMotor extends SubsystemBase {
 
   //new instance of SparkMax controlling a NEO motor with ID of 25
-  private final SparkMax Testmotor = new SparkMax(25, Constants.NEO);
+  private final SparkMax Testmotor = new SparkMax(25, DriveConstants.NEO);
 
   /** Creates a new testMotor. */
   public TestMotor() {

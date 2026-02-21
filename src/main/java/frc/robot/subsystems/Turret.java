@@ -4,7 +4,13 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
+import com.revrobotics.spark.SparkMax;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.Constants.DriveConstants;
 
 public class Turret extends SubsystemBase {
   /*
@@ -28,11 +34,30 @@ public class Turret extends SubsystemBase {
    * 
    * Shooter motors should be able to spin and stop spinning.
    * 
-   * Two Motors control the shooting of the ball, one NEO 550 controls the pivot of hood
-   * one motor controls the rotation of the turret, one motor for the tower
+   * Two Motors control the shooting of the ball, one NEO 550 controls the pivot of hood - Complete.
+   * one motor controls the rotation of the turret, one motor for the tower - Complete.
    */
   /** Creates a new Turret. */
-  public Turret() {}
+
+  //All Motors for turret ID's and Motor Type's assigned
+  private final SparkMax kLTShoot = new SparkMax(14, DriveConstants.NEO);
+  private final SparkMax kRTShoot = new SparkMax(15, DriveConstants.NEO);
+  private final SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
+  private final SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
+  
+  //Tower Motor ID and Motor Type assignment
+  private final SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
+
+  public Turret() {
+    //Configurations for Turret Motors
+    kLTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kRTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kTurRot.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kHoodFlap.configure(Constants.kTwntyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    //Configuration for Tower Motor
+    kTowerMotor.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+  }
 
   @Override
   public void periodic() {

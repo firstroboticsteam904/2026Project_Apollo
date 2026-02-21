@@ -7,7 +7,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.DriveConstants;
 import java.io.File;
 import java.util.function.Supplier;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -40,7 +40,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveDriveTelemetry.verbosity = TelemetryVerbosity.POSE;
     try
     {
-      swerveDrive = new SwerveParser(directory).createSwerveDrive(Constants.maximumSpeed,
+      swerveDrive = new SwerveParser(directory).createSwerveDrive(DriveConstants.maximumSpeed,
                                                                   new Pose2d(new Translation2d(Meter.of(1),
                                                                                                Meter.of(4)),
                                                                              Rotation2d.fromDegrees(0)));

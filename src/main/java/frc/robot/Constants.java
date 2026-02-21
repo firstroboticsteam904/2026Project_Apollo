@@ -25,12 +25,14 @@ public final class Constants {
         public static final double limelightDeadzone = 0.05;
       }
     
+    public static final class DriveConstants{
     //Maximum speed allowance for Drivetrain
     public static final double maximumSpeed = Units.feetToMeters(13.59);
     
     //Motor type shortcut for SparkMAX set up.
     public static final MotorType NEO = MotorType.kBrushless;
     public static final MotorType NEO550 = MotorType.kBrushless;
+    }
 
     static{
       //Forty Amp Limit
