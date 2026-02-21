@@ -21,9 +21,11 @@ import swervelib.SwerveInputStream;
 
 //TO-DO turn needs to be inverted
 public class RobotContainer {
+  //creating an insatnce of subsystems in RobotContainer
   private final SwerveSubsystem driveBase = new SwerveSubsystem();
   private final TestMotor testMotor = new TestMotor();
 
+  //creating a controller
   private final CommandXboxController driverController = new CommandXboxController(0);
 
   public RobotContainer() {
@@ -46,12 +48,16 @@ public class RobotContainer {
     Command driveFieldOrientatedAngularVelocity = driveBase.driveFieldOriented(driveAngularVelocity);
 
   private void configureBindings() {
+
+    //holding X will make robot go slower
     driverController.x()
     .onTrue(Commands.runOnce(() -> {driveAngularVelocity.scaleTranslation(MathUtil.interpolate(1.0, 0.1, 1));
     }))
     .onFalse(Commands.runOnce(() -> {
       driveAngularVelocity.scaleTranslation(1);
     }));
+
+    //creating button press/release for commands
     driverController.povUp().whileTrue(new MoveMotor(testMotor));
     driverController.povUp().whileFalse(new StopMotor(testMotor));
   }

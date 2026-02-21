@@ -15,6 +15,10 @@ public class Intake extends SubsystemBase {
    * If one intake is out, the other NEEDS to be in.
    * 
    * Belt under robot should be able to run without deployment of intakes
+   * 
+   * One Motor (per side) to pivot, one motor (per side) to pull it in. Total of 4 Motors (Two per side)
+   * 
+   * Belts Under the robot still TBD, but will either be one or two
    */
   /** Creates a new Intake. */
   public Intake() {}

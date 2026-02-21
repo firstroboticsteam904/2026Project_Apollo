@@ -18,7 +18,8 @@ public class Turret extends SubsystemBase {
    * also be found in the limelight docs.
    * 
    * Turret cannot rotate past 360 degrees when tracking. When it hits 359, it needs to rotate
-   * back around the other direction with PID. 
+   * back around the other direction with PID.
+   * !!Might end up being about 180 degrees for TC depending on robot design. Final goal is 359
    * 
    * Should keep track of ID's based on alliance color, and field location.
    * 
@@ -26,6 +27,9 @@ public class Turret extends SubsystemBase {
    * shooter jam.
    * 
    * Shooter motors should be able to spin and stop spinning.
+   * 
+   * Two Motors control the shooting of the ball, one NEO 550 controls the pivot of hood
+   * one motor controls the rotation of the turret, one motor for the tower
    */
   /** Creates a new Turret. */
   public Turret() {}

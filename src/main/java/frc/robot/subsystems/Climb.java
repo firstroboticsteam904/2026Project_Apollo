@@ -13,6 +13,10 @@ public class Climb extends SubsystemBase {
    * Ablity to raise the climber
    * 
    * Ability to lower the climber
+   * 
+   * Ability to pivot arms in and out
+   * 
+   * One motor controls the Up/Down, One Motor controls the In/Out. Total of 2 Motors
    */
   /** Creates a new Climb. */
   public Climb() {}

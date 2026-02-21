@@ -7,14 +7,13 @@ package frc.robot.subsystems;
 import com.revrobotics.PersistMode;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.ResetMode;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class TestMotor extends SubsystemBase {
 
-  //new instance of SparkMax
-  private final SparkMax Testmotor = new SparkMax(9, MotorType.kBrushless);
+  //new instance of SparkMax controlling a NEO motor with ID of 25
+  private final SparkMax Testmotor = new SparkMax(25, Constants.NEO);
 
   /** Creates a new testMotor. */
   public TestMotor() {
@@ -29,6 +28,7 @@ public class TestMotor extends SubsystemBase {
 
   //create funtion to set motor speed
   public void speed(double power) {
+    //setting motor speed based on what is inputed from the command
     Testmotor.set(power);
   }
 
