@@ -6,8 +6,10 @@ package frc.robot;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 /** Add your docs here. */
 public final class Constants {
@@ -16,6 +18,9 @@ public final class Constants {
   public static final SparkMaxConfig kTwntyAmp = new SparkMaxConfig();
   public static final SparkMaxConfig kFortyAmp = new SparkMaxConfig();
   public static final SparkMaxConfig kThirtyAmp = new SparkMaxConfig();
+
+  public static final SparkMaxConfig kTurFollow = new SparkMaxConfig();
+
   
     public static final class OperatorConstants{
 
@@ -52,6 +57,20 @@ public final class Constants {
       public static final double kTurRotHome = 0;
       public static final double kTurLTMax = 100; //number will need to be changed later
       public static final double kTurRTMax = -100; //number will need to be changed later
+
+      public static final SparkMaxConfig kShootLead = new SparkMaxConfig();
+      public static final SparkMaxConfig kShootFollow = new SparkMaxConfig();
+
+      static{
+        kShootLead
+          .inverted(false)
+          .idleMode(IdleMode.kCoast)
+          .smartCurrentLimit(45);
+
+        kShootFollow
+          .apply(kShootLead)
+          .follow(14, true);
+      }
     }
 
     static{
@@ -61,6 +80,7 @@ public final class Constants {
       kThirtyAmp.smartCurrentLimit(35);
       //Twenty Amp Limit
       kTwntyAmp.smartCurrentLimit(25);
+      //Following motor
 
     
     }

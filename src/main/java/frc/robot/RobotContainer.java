@@ -18,6 +18,7 @@ import frc.robot.subsystems.Turret;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.MoveMotor;
 import frc.robot.commands.StopMotor;
+import frc.robot.commands.TurShootCmd;
 import swervelib.SwerveInputStream;
 
 //TO-DO turn needs to be inverted
@@ -60,7 +61,7 @@ public class RobotContainer {
     }));
 
     //creating button press/release for commands
-    driverController.povUp().whileTrue(new MoveMotor(testMotor));
+    driverController.povUp().whileTrue(new TurShootCmd(turret));
     driverController.povUp().whileFalse(new StopMotor(testMotor));
   }
 

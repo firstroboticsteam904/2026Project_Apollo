@@ -9,14 +9,18 @@ import java.util.Optional;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.TurretConstants;
 
 public class Turret extends SubsystemBase {
   /*
@@ -46,29 +50,27 @@ public class Turret extends SubsystemBase {
   /** Creates a new Turret. */
 
   //All Motors for turret ID's and Motor Type's assigned
-  private final SparkMax kLTShoot = new SparkMax(14, DriveConstants.NEO);
-  private final SparkMax kRTShoot = new SparkMax(15, DriveConstants.NEO);
-  private final SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
-  private final SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
+  public SparkMax kLTShoot = new SparkMax(14, DriveConstants.NEO);
+  public SparkMax kRTShoot = new SparkMax(15, DriveConstants.NEO);
+  private SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
+  private SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
+  
 
   //Tower Motor ID and Motor Type assignment
-  private final SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
+  private SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
 
+  private NetworkTable kLimeTable = NetworkTableInstance.getDefault().getTable("limelight");
 
-
-  private final NetworkTable kLimeTable = NetworkTableInstance.getDefault().getTable("limelight");
 
   public Turret() {
-    //Configurations for Turret Motors
-    kLTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kRTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    //Shooting Wheels configurations
+    kLTShoot.configure(TurretConstants.kShootLead, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kRTShoot.configure(TurretConstants.kShootFollow, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    
     kTurRot.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     kHoodFlap.configure(Constants.kTwntyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     //Configuration for Tower Motor
     kTowerMotor.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-
-
 
   }
 
@@ -77,6 +79,9 @@ public class Turret extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
+  public void TurShoot(double Voltage){
+    kLTShoot.setVoltage(Voltage);
+  }
   
 
 }
