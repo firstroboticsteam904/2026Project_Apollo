@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.TestMotor;
+import frc.robot.subsystems.Turret;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.MoveMotor;
 import frc.robot.commands.StopMotor;
@@ -24,6 +25,7 @@ public class RobotContainer {
   //creating an insatnce of subsystems in RobotContainer
   private final SwerveSubsystem driveBase = new SwerveSubsystem();
   private final TestMotor testMotor = new TestMotor();
+  private final Turret turret = new Turret();
 
   //creating a controller
   private final CommandXboxController driverController = new CommandXboxController(0);

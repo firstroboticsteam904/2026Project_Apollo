@@ -4,10 +4,16 @@
 
 package frc.robot.subsystems;
 
+import java.util.Optional;
+
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
@@ -44,9 +50,13 @@ public class Turret extends SubsystemBase {
   private final SparkMax kRTShoot = new SparkMax(15, DriveConstants.NEO);
   private final SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
   private final SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
-  
+
   //Tower Motor ID and Motor Type assignment
   private final SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
+
+
+
+  private final NetworkTable kLimeTable = NetworkTableInstance.getDefault().getTable("limelight");
 
   public Turret() {
     //Configurations for Turret Motors
@@ -57,10 +67,16 @@ public class Turret extends SubsystemBase {
     //Configuration for Tower Motor
     kTowerMotor.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
+
+
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  
+
 }
