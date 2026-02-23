@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Turret;
 
@@ -25,7 +24,14 @@ public class TurShootCmd extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    kTurret.TurShoot(12);
+    /* 
+     * Voltage controls the speed of the motor. Use this over .set as Voltage will assign a voltage to be sent
+     * over sending a percentage of the battery power currently avalible. Avoid setting at 12v as that is
+     * the normal opereating voltage of the battery, and will dip as the match goes on.
+     * 
+     * This might be changed to run on velocity/rpm later, for now use voltage.
+    */
+    kTurret.TurShoot(10);
   }
 
   // Called once the command ends or is interrupted.

@@ -4,20 +4,14 @@
 
 package frc.robot.subsystems;
 
-import java.util.Optional;
-
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.TurretConstants;
@@ -38,6 +32,8 @@ public class Turret extends SubsystemBase {
    * !!Might end up being about 180 degrees for TC depending on robot design. Final goal is 359
    * 
    * Should keep track of ID's based on alliance color, and field location.
+   * 
+   * 
    * 
    * Ability to track if motor is stalled or not, if stalled, run motor in reverse to clear
    * shooter jam.
@@ -78,7 +74,8 @@ public class Turret extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-
+  
+  //Speed to motors is set based on what is inputted into the voltage position in the TurShootCmd
   public void TurShoot(double Voltage){
     kLTShoot.setVoltage(Voltage);
   }
