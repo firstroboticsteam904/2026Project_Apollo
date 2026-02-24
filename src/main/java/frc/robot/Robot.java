@@ -7,6 +7,9 @@ package frc.robot;
 
 import java.util.Optional;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -24,6 +27,9 @@ public class Robot extends TimedRobot {
 
   private final RobotContainer m_robotContainer;
   Optional<Alliance> ally = DriverStation.getAlliance();
+  public static NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
+  //NetworkTable photonvisionTable = NetworkTableInstance.create().getTable("photonvision");
+
 
   
   /**
@@ -52,20 +58,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-
-    if (ally.isPresent()) {
-    if (ally.get() == Alliance.Red) {
-        System.out.printf("red");
-    }
-    if (ally.get() == Alliance.Blue) {
-        System.out.printf("blue");
-    }
-}
-else {
-    System.out.printf("no alliance found");
-}
   }
-
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
@@ -79,7 +72,17 @@ else {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    if (ally.isPresent()) {
+    if (ally.get() == Alliance.Red) {
+        //set limelight pipeline
+    }
+    if (ally.get() == Alliance.Blue) {
+        //set limelight pipeline
+    }
+}
+else {
+    //do nothing
+}
 
 
     // schedule the autonomous command (example)

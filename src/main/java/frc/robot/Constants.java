@@ -8,6 +8,8 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import frc.robot.subsystems.Turret;
 
 
 /** Add your docs here. */
@@ -38,7 +40,7 @@ public final class Constants {
     public static final MotorType NEO550 = MotorType.kBrushless;
     }
 
-    public static final class LimelightConstants{
+    public static class LimelightConstants{
       //Red Hub Apriltag ID's (will need to be changed later)
       public static final int kRedHubFTMid = 1;
       public static final int kRedHubRTMid = 2;
@@ -47,15 +49,21 @@ public final class Constants {
       public static final int kBlueHubFTMid = 4;
       public static final int kBlueHubRTMid = 5;
       public static final int kBlueHubLTMid = 6;
+
+      public static NetworkTableEntry tX = Robot.limelightTable.getEntry("tx");
+      public static NetworkTableEntry tY = Robot.limelightTable.getEntry("ty");
+      public static NetworkTableEntry tA = Robot.limelightTable.getEntry("ta");
+
+      public static double kTX = tX.getDouble(0);
     }
 
-    public static final class TurretConstants{
-      public static final double kHoodHome = 0;
-      public static final double kHoodMax = 100; //number will need to be adjusted later
-      public static final double kHoodPass = 50; //number will need to be adjusted later
-      public static final double kTurRotHome = 0;
-      public static final double kTurLTMax = 100; //number will need to be changed later
-      public static final double kTurRTMax = -100; //number will need to be changed later
+    public static class TurretConstants{
+      public static double kHoodHome = 0;
+      public static double kHoodMax = 100; //number will need to be adjusted later
+      public static double kHoodPass = 50; //number will need to be adjusted later
+      public static double kTurRotHome = 0;
+      public static double kTurLTMax = 100; //number will need to be changed later
+      public static double kTurRTMax = Turret.kTurRot.getEncoder().getPosition(); //number will need to be changed later
 
       public static final SparkMaxConfig kShootLead = new SparkMaxConfig();
       public static final SparkMaxConfig kShootFollow = new SparkMaxConfig();

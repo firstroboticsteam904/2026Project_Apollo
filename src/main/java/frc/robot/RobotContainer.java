@@ -63,6 +63,7 @@ public class RobotContainer {
     //creating button press/release for commands
     driverController.povUp().whileTrue(new TurShootCmd(turret));
     driverController.povUp().whileFalse(new StopMotor(testMotor));
+    driverController.a().whileTrue(turret.turRotCommand());
   }
 
   public Command getAutonomousCommand() {

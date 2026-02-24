@@ -8,12 +8,18 @@ import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.LimelightConstants;
 import frc.robot.Constants.TurretConstants;
 
 public class Turret extends SubsystemBase {
@@ -48,15 +54,14 @@ public class Turret extends SubsystemBase {
   //All Motors for turret ID's and Motor Type's assigned
   public SparkMax kLTShoot = new SparkMax(14, DriveConstants.NEO);
   public SparkMax kRTShoot = new SparkMax(15, DriveConstants.NEO);
-  private SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
+  public static SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
   private SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
   
 
   //Tower Motor ID and Motor Type assignment
   private SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
 
-  private NetworkTable kLimeTable = NetworkTableInstance.getDefault().getTable("limelight");
-
+  PIDController VisionPID = new PIDController(0, 0, 0);
 
   public Turret() {
     //Shooting Wheels configurations
@@ -68,16 +73,46 @@ public class Turret extends SubsystemBase {
     //Configuration for Tower Motor
     kTowerMotor.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public double kVisPID(){
+    SmartDashboard.putNumber("Limelight TX", LimelightConstants.tX.getDouble(0));
+    VisionPID.setIntegratorRange(TurretConstants.kTurRTMax, TurretConstants.kTurLTMax);
+    double kTurVisX = VisionPID.calculate(LimelightConstants.kTX, 0);
+    SmartDashboard.putNumber("VisionPID", kTurVisX);
+
+    return kTurVisX;
+  }
+
+  public void kVisReset(){
+    VisionPID.reset();
+  }
   
   //Speed to motors is set based on what is inputted into the voltage position in the TurShootCmd
   public void TurShoot(double Voltage){
     kLTShoot.setVoltage(Voltage);
+  }
+
+  /*public void TurRot(double VisionPID){
+    kTurRot.set(kVisPID());
+  }*/
+
+  public void Hoodflap(double Voltage){
+    kHoodFlap.setVoltage(Voltage);
+  }
+
+  public Command turRotCommand(){
+    return this.startEnd(() -> {
+      this.kTurRot.set(kVisPID());;
+    }, () -> {
+      this.kVisReset();
+    });
   }
   
 
