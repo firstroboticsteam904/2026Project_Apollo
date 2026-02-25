@@ -63,7 +63,7 @@ public final class Constants {
       public static double kHoodPass = 50; //number will need to be adjusted later
       public static double kTurRotHome = 0;
       public static double kTurLTMax = 100; //number will need to be changed later
-      public static double kTurRTMax = Turret.kTurRot.getEncoder().getPosition(); //number will need to be changed later
+      public static double kTurRTMax = -100; //number will need to be changed later
 
       public static final SparkMaxConfig kShootLead = new SparkMaxConfig();
       public static final SparkMaxConfig kShootFollow = new SparkMaxConfig();
