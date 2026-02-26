@@ -103,9 +103,10 @@ public class Turret extends SubsystemBase {
     kLTShoot.setVoltage(Voltage);
   }
 
-  //public double TurRot(double Voltage){
-    //kTurRot.setVoltage(VisionPID.calculate(LimelightConstants.kTX, 0) + TurFeedForward);
-  //}
+  public void TurRot(){
+    double kTurFeed = TurFeedForward.calculate(1);
+    kTurRot.setVoltage(kVisPID() + kTurFeed);
+  }
 
   /*
    * Encoder ticks to Degrees
