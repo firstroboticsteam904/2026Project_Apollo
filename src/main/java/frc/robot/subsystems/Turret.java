@@ -135,20 +135,21 @@ public class Turret extends SubsystemBase {
       return Deg;
    }
 
-
-
-  public Command turRotCommand(){
-    return this.startEnd(() -> {
-      this.kTurRot.set(kVisPID());
-      this.TurTicksToDegrees();
-    }, () -> {
-      this.kVisReset();
-    });
-  }
-
   public void Hoodflap(double Voltage){
     kHoodFlap.setVoltage(Voltage);
   }
+
+  public Command turRotCommand(){
+    return this.startEnd(() -> {
+      this.TurRot();
+      this.TurTicksToDegrees();
+    }, () -> {
+      this.kVisReset();
+      this.kTurRot.setVoltage(0);
+    });
+  }
+
+
   
 
 }
