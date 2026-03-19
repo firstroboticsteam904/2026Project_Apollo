@@ -34,6 +34,25 @@ public final class Constants {
     public static final MotorType NEO550 = MotorType.kBrushless;
     }
 
+    public static final class ShootConstants{
+      public static final double HoodHome = 0;
+      public static final double HoodShoot = 10;
+      public static final double HoodPass = 25;
+    }
+
+    public static final class IntakeConstants{
+      public static final double IntakeHome = 0;
+      public static final double LeftIntakeExtend = 10;
+      public static final double RightIntakeExtend = -10;
+    }
+
+    public static final class ClimbConstants{
+      public static final double ClimbExtendHome = 0;
+      public static final double ClimbExtendOut = 10;
+      public static final double ClimbPivotHome = 0;
+      public static final double ClimbPivotOut = 10;
+    }
+
     static{
       //Forty Amp Limit
       kFortyAmp.smartCurrentLimit(45);

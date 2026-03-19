@@ -8,6 +8,7 @@ import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
@@ -42,4 +43,27 @@ public class Climb extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public double ClimbPivotTicks(){
+    double PivotTicks;
+    PivotTicks = kClimbPiv.getEncoder().getPosition();
+    SmartDashboard.putNumber("Pivot Ticks", PivotTicks);
+    return PivotTicks;
+  }
+
+  public double ClimbLiftTicks(){
+    double LiftTicks;
+    LiftTicks = kClimbLift.getEncoder().getPosition();
+    SmartDashboard.putNumber("Lift Ticks", LiftTicks);
+    return LiftTicks;
+  }
+
+  public void ClimbPivotPower(double PivotVolts){
+    kClimbPiv.setVoltage(PivotVolts);
+  }
+
+  public void ClimbExtendPower(double ExtendVolts){
+    kClimbLift.setVoltage(ExtendVolts);
+  }
+
 }

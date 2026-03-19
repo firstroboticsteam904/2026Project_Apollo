@@ -4,10 +4,15 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.configs.TalonFXSConfiguration;
+import com.ctre.phoenix6.hardware.TalonFXS;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
@@ -40,18 +45,21 @@ public class Turret extends SubsystemBase {
   /** Creates a new Turret. */
 
   //All Motors for turret ID's and Motor Type's assigned
-  private final SparkMax kLTShoot = new SparkMax(14, DriveConstants.NEO);
-  private final SparkMax kRTShoot = new SparkMax(15, DriveConstants.NEO);
-  private final SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
-  private final SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
+  TalonFXS kLTShoot = new TalonFXS(14);
+  TalonFXS kRTShoot = new TalonFXS(15);
+  SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
+  SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
   
   //Tower Motor ID and Motor Type assignment
-  private final SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
+  SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
+
+  TalonFXSConfiguration MasterTalonConfig;
 
   public Turret() {
+    MasterTalonConfig = new TalonFXSConfiguration();
+
+    MasterTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     //Configurations for Turret Motors
-    kLTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kRTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     kTurRot.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     kHoodFlap.configure(Constants.kTwntyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     //Configuration for Tower Motor
@@ -63,4 +71,21 @@ public class Turret extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public double HoodTicks(){
+    double HoodTicks;
+    HoodTicks = kHoodFlap.getEncoder().getPosition();
+    SmartDashboard.putNumber("HoodTicks", HoodTicks);
+    return HoodTicks;
+  }
+
+  public void HoodPower(double HoodVolts){
+    kHoodFlap.setVoltage(HoodVolts);
+  }
+
+  public void ShootBall(double ShootVolts){
+    kLTShoot.setVoltage(ShootVolts);
+    kRTShoot.setVoltage(ShootVolts * -1);
+  }
+
 }

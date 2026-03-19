@@ -8,6 +8,7 @@ import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
@@ -51,4 +52,39 @@ public class Intake extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public double LTIntakePivTicks(){
+    double LTPivotTicks;
+    LTPivotTicks = kLTPiv.getEncoder().getPosition();
+    SmartDashboard.putNumber("LTPivTicks", LTPivotTicks);
+    return LTPivotTicks;
+  }
+
+  public double RTIntakePivTicks(){
+    double RTPivotTicks;
+    RTPivotTicks = kRTPiv.getEncoder().getPosition();
+    SmartDashboard.putNumber("RTPivTicks", RTPivotTicks);
+    return RTPivotTicks;
+  }
+
+  public void LTIntakePivPower(double LTPivVolts){
+    kLTPiv.setVoltage(LTPivVolts);
+  }
+
+  public void RTIntakePivPower(double RTPivVolts){
+    kRTPiv.setVoltage(RTPivVolts);
+  }
+
+  public void LTIntakeRoll(double LTRollVolts){
+    kLTRoll.setVoltage(LTRollVolts);
+  }
+
+  public void RTIntakeRoll(double RTRollVolts){
+    kRTRoll.setVoltage(RTRollVolts);
+  }
+
+  public void BellyBeltRoll(double BellyRollVolts){
+    kBellyBelt.setVoltage(BellyRollVolts);
+  }
+
 }
