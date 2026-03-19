@@ -35,8 +35,8 @@ public class Climb extends SubsystemBase {
   /** Creates a new Climb. */
   public Climb() {
     //Configurations for climb motors
-    kClimbPiv.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kClimbLift.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kClimbPiv.configure(Constants.ClimbPivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kClimbLift.configure(Constants.ClimbExtendConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   @Override

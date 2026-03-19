@@ -60,10 +60,10 @@ public class Turret extends SubsystemBase {
 
     MasterTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     //Configurations for Turret Motors
-    kTurRot.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kHoodFlap.configure(Constants.kTwntyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kTurRot.configure(Constants.TurretConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kHoodFlap.configure(Constants.HoodConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     //Configuration for Tower Motor
-    kTowerMotor.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kTowerMotor.configure(Constants.TowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
   }
 
@@ -86,6 +86,10 @@ public class Turret extends SubsystemBase {
   public void ShootBall(double ShootVolts){
     kLTShoot.setVoltage(ShootVolts);
     kRTShoot.setVoltage(ShootVolts * -1);
+  }
+
+  public void TowerSpin(double TowerVolts){
+    kTowerMotor.setVoltage(TowerVolts);
   }
 
 }

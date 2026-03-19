@@ -40,12 +40,12 @@ public class Intake extends SubsystemBase {
 
   public Intake() {
     //Configurations for all intake motors
-    kLTPiv.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kLTRoll.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kRTPiv.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kRTRoll.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kLTPiv.configure(Constants.LeftIntakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kLTRoll.configure(Constants.LeftIntakeRollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kRTPiv.configure(Constants.RightIntakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kRTRoll.configure(Constants.RightIntakeRollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     //Configuration for Belly Belt Motor
-    kBellyBelt.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    kBellyBelt.configure(Constants.BellyBeltConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   @Override
