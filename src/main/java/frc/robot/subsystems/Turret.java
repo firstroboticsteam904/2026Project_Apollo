@@ -40,22 +40,9 @@ public class Turret extends SubsystemBase {
   /** Creates a new Turret. */
 
   //All Motors for turret ID's and Motor Type's assigned
-  private final SparkMax kLTShoot = new SparkMax(14, DriveConstants.NEO);
-  private final SparkMax kRTShoot = new SparkMax(15, DriveConstants.NEO);
-  private final SparkMax kTurRot = new SparkMax(16, DriveConstants.NEO);
-  private final SparkMax kHoodFlap = new SparkMax(17, DriveConstants.NEO550);
-  
-  //Tower Motor ID and Motor Type assignment
-  private final SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
+
 
   public Turret() {
-    //Configurations for Turret Motors
-    kLTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kRTShoot.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kTurRot.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kHoodFlap.configure(Constants.kTwntyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    //Configuration for Tower Motor
-    kTowerMotor.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
   }
 

@@ -26,16 +26,14 @@ public class Climb extends SubsystemBase {
    */
 
     //Motors for Climb, ID's and Motor Type assigned
-    private final SparkMax kClimbPiv = new SparkMax(19, DriveConstants.NEO);
-    private final SparkMax kClimbLift = new SparkMax(20, DriveConstants.NEO);
+
 
 
 
   /** Creates a new Climb. */
   public Climb() {
     //Configurations for climb motors
-    kClimbPiv.configure(Constants.kThirtyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kClimbLift.configure(Constants.kFortyAmp, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
   }
 
   @Override
