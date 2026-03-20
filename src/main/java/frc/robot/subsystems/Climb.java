@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -27,16 +28,16 @@ public class Climb extends SubsystemBase {
    */
 
     //Motors for Climb, ID's and Motor Type assigned
-    private final SparkMax kClimbPiv = new SparkMax(19, DriveConstants.NEO);
-    private final SparkMax kClimbLift = new SparkMax(20, DriveConstants.NEO);
+    //private final SparkMax kClimbPiv = new SparkMax(19, DriveConstants.NEO);
+    //private final SparkMax kClimbLift = new SparkMax(20, DriveConstants.NEO);
 
 
 
   /** Creates a new Climb. */
   public Climb() {
     //Configurations for climb motors
-    kClimbPiv.configure(Constants.ClimbPivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kClimbLift.configure(Constants.ClimbExtendConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    //kClimbPiv.configure(Constants.ClimbPivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    //kClimbLift.configure(Constants.ClimbExtendConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   @Override
@@ -44,7 +45,7 @@ public class Climb extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public double ClimbPivotTicks(){
+  /*public double ClimbPivotTicks(){
     double PivotTicks;
     PivotTicks = kClimbPiv.getEncoder().getPosition();
     SmartDashboard.putNumber("Pivot Ticks", PivotTicks);
@@ -64,6 +65,6 @@ public class Climb extends SubsystemBase {
 
   public void ClimbExtendPower(double ExtendVolts){
     kClimbLift.setVoltage(ExtendVolts);
-  }
+  }*/
 
 }

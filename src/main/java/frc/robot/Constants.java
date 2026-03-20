@@ -73,9 +73,9 @@ public final class Constants {
       RightIntakeRollerConfig.smartCurrentLimit(50).inverted(false).idleMode(null);
       BellyBeltConfig.smartCurrentLimit(50).inverted(false).idleMode(null);
 
-      HoodConfig.smartCurrentLimit(50).inverted(false).idleMode(null);
+      HoodConfig.smartCurrentLimit(50).inverted(false).idleMode(IdleMode.kBrake);
       TurretConfig.smartCurrentLimit(50).inverted(false).idleMode(null);
-      TowerConfig.smartCurrentLimit(50).inverted(false).idleMode(null);
+      TowerConfig.smartCurrentLimit(50).inverted(false).idleMode(IdleMode.kBrake);
     
     }
 }

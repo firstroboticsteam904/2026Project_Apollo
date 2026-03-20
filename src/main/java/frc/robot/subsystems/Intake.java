@@ -32,8 +32,8 @@ public class Intake extends SubsystemBase {
   //All Intake motors, ID's and MotorType assigned
   public final SparkMax kLTPiv = new SparkMax(9, DriveConstants.NEO);
   public final SparkMax kLTRoll = new SparkMax(10, DriveConstants.NEO);
-  public final SparkMax kRTPiv = new SparkMax(11, DriveConstants.NEO);
-  public final SparkMax kRTRoll = new SparkMax(12, DriveConstants.NEO);
+  //public final SparkMax kRTPiv = new SparkMax(11, DriveConstants.NEO);
+  //public final SparkMax kRTRoll = new SparkMax(12, DriveConstants.NEO);
 
   //Belly Belt ID and Motor Type assigned
   public final SparkMax kBellyBelt = new SparkMax(13, DriveConstants.NEO);
@@ -42,8 +42,8 @@ public class Intake extends SubsystemBase {
     //Configurations for all intake motors
     kLTPiv.configure(Constants.LeftIntakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     kLTRoll.configure(Constants.LeftIntakeRollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kRTPiv.configure(Constants.RightIntakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    kRTRoll.configure(Constants.RightIntakeRollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    //kRTPiv.configure(Constants.RightIntakePivotConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    //kRTRoll.configure(Constants.RightIntakeRollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     //Configuration for Belly Belt Motor
     kBellyBelt.configure(Constants.BellyBeltConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
@@ -60,28 +60,28 @@ public class Intake extends SubsystemBase {
     return LTPivotTicks;
   }
 
-  public double RTIntakePivTicks(){
+  /*public double RTIntakePivTicks(){
     double RTPivotTicks;
     RTPivotTicks = kRTPiv.getEncoder().getPosition();
     SmartDashboard.putNumber("RTPivTicks", RTPivotTicks);
     return RTPivotTicks;
-  }
+  }*/
 
   public void LTIntakePivPower(double LTPivVolts){
     kLTPiv.setVoltage(LTPivVolts);
   }
 
-  public void RTIntakePivPower(double RTPivVolts){
+  /*public void RTIntakePivPower(double RTPivVolts){
     kRTPiv.setVoltage(RTPivVolts);
-  }
+  }*/
 
   public void LTIntakeRoll(double LTRollVolts){
     kLTRoll.setVoltage(LTRollVolts);
   }
 
-  public void RTIntakeRoll(double RTRollVolts){
+  /*public void RTIntakeRoll(double RTRollVolts){
     kRTRoll.setVoltage(RTRollVolts);
-  }
+  }*/
 
   public void BellyBeltRoll(double BellyRollVolts){
     kBellyBelt.setVoltage(BellyRollVolts);

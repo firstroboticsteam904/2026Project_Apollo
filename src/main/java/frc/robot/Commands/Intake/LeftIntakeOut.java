@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class RightIntakeCmd extends Command {
+public class LeftIntakeOut extends Command {
+  /** Creates a new LeftIntakeCmd. */
   Intake intake;
   double desiredTicks;
-  /** Creates a new RightIntakeCmd. */
-  public RightIntakeCmd() {
-    desiredTicks = 15;
+  public LeftIntakeOut(Intake intake, double PivotTicks) {
+    this.intake = intake;
+    desiredTicks = PivotTicks;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(intake);
   }
@@ -25,9 +26,11 @@ public class RightIntakeCmd extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rightTicks = intake.RTIntakePivTicks();
-    if(rightTicks >= desiredTicks){
-
+    double intakePivot = intake.LTIntakePivTicks();
+    if(intakePivot <= desiredTicks){
+      intake.LTIntakePivPower(5);
+    } else{
+      intake.LTIntakePivPower(0);
     }
   }
 
@@ -38,6 +41,10 @@ public class RightIntakeCmd extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(intake.LTIntakePivTicks() >= desiredTicks){
+      intake.LTIntakePivPower(0);
+      return true;
+    }
     return false;
   }
 }

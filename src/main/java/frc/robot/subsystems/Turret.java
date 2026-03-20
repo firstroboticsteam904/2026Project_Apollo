@@ -5,7 +5,9 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXSConfiguration;
+import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFXS;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
@@ -54,11 +56,14 @@ public class Turret extends SubsystemBase {
   SparkMax kTowerMotor = new SparkMax(18, DriveConstants.NEO);
 
   TalonFXSConfiguration MasterTalonConfig;
+  TalonFXSConfiguration FollowerTalonConfig;
 
   public Turret() {
     MasterTalonConfig = new TalonFXSConfiguration();
+    FollowerTalonConfig = new TalonFXSConfiguration();
 
     MasterTalonConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    kRTShoot.setControl(new Follower(14, MotorAlignmentValue.Opposed));
     //Configurations for Turret Motors
     kTurRot.configure(Constants.TurretConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     kHoodFlap.configure(Constants.HoodConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
